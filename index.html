@@ -3,29 +3,202 @@
     <head>
         <meta charset="utf-8" />
         <meta name="format-detection" content="telephone=no" />
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <link rel="stylesheet" type="text/css" href="css/jquery.mobile.css" />
-        <title>Hello World</title>
+        <title>Charity Bets</title>
     </head>
     <body>
-        <div data-role="page">
-            <div data-role="header">
-                <h1>Charity Bets</h1>
-            </div>
-            <div data-role="content" id="content">
+        <div id="container">
+
+
+
+
+
+
+
+            <div data-role="page" id="mybets">
+
+                <div data-role="header" data-position="fixed">
+                    <h1>Charity Bets</h1>
+                </div>
+                <div data-role="content">
+                    <table style="width:100%">
+                        <tr><td style="width:70%;vertical-align:top;">
+                            <ul data-role="listview">
+                                <li>Jacob Bet You $100 that the Eagles Beat the Packers<div class="betInfo">Expires 11/15/2013 5:30 PM CT</div></li>
+                                <li>Mason Bet You $90 that the Bengals Beat the Dolphins<div class="betInfo">Expires 11/15/2013 5:30 PM CT</div></li>
+                                <li>You Bet Ethan $80 that Bills Beat the Chiefs<div class="betInfo">Expires 11/15/2013 5:30 PM CT</div></li>
+                                <li>William Bets You $70 that the Eagles Beat the Raiders<div class="betInfo">Expires 11/15/2013 5:30 PM CT</div></li>
+                                <li>You Bet Nathan $60 that the Bengals Beat the Jets<div class="betInfo">Expires 11/15/2013 5:30 PM CT</div></li>
+                            </ul>
+                        </td><td style="width:30%;padding-left:25px;vertical-align:top">
+                            <div class="pull-right">
+                                <a href="#" data-role="button" data-inline="true" data-icon="plus" data-theme="b" data-mini="true">Place a Bet</a>
+                            </div>
+                            <h2>Filter</h2>
+                            <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+                                <legend>Bet Types:</legend>
+                                <input type="checkbox" id="checkbox-open" checked>
+                                <label for="checkbox-open">Open</label>
+                                <input type="checkbox" id="checkbox-pending">
+                                <label for="checkbox-pending">Pending</label>
+                                <input type="checkbox" id="checkbox-closed">
+                                <label for="checkbox-closed">Closed</label>
+                            </fieldset>
+
+                            <label for="tags">Tags:</label>
+                            <input type="text" id="tags" value="" placeholder="nfl,raiders">
+                            <label for="maxAmount">Max Amount:</label>
+                            <input type="text" id="maxAmount" value="" placeholder="$20">
+                            <a href="#" data-role="button" data-icon="search" data-theme="b" data-mini="true">Search</a>
+                        </td></tr>
+                    </table>
+                </div>
+                <div data-role="footer" data-id="appFooter" data-position="fixed" class="appFooter">
+                    <div data-role="navbar">
+                        <ul>
+                            <li><a href="#mybets" style="background-color:#000;background-image:none;">My Bets</a></li>
+                            <li><a href="#allbets">All Bets</a></li>
+                            <li><a href="#leaderboard">Leaderboard</a></li>
+                        </ul>
+                    </div>
+                </div>
 
             </div>
-            <div data-role="footer" data-id="appFooter" data-position="fixed" id="appFooter">
-                <div data-role="navbar">
-                    <ul>
-                        <li><a id="tab_mybets" href="javascript:showTab('mybets');">My Bets</a></li>
-                        <li><a id="tab_allbets" href="javascript:showTab('allbets');">All Bets</a></li>
-                        <li><a id="tab_leaderboard" href="javascript:showTab('leaderboard');">Leaderboard</a></li>
-                    </ul>
+
+
+
+
+
+
+
+
+            <div data-role="page" id="allbets">
+                <div data-role="header" data-position="fixed">
+                    <h1>Charity Bets</h1>
+                </div>
+                <div data-role="content">
+                    <table style="width:100%">
+                        <tr><td style="width:70%;vertical-align:top;">
+                            <ul data-role="listview">
+                                <li>Jacob Bets $100 that the Eagles Beat the Packers<div class="betInfo">Expires 11/15/2013 5:30 PM CT</div></li>
+                                <li>Mason Bets $90 that the Bengals Beat the Dolphins<div class="betInfo">Expires 11/15/2013 5:30 PM CT</div></li>
+                                <li>Ethan Bets $80 that Bills Beat the Chiefs<div class="betInfo">Expires 11/15/2013 5:30 PM CT</div></li>
+                                <li>William Bets $70 that the Eagles Beat the Raiders<div class="betInfo">Expires 11/15/2013 5:30 PM CT</div></li>
+                                <li>Nathan Bets $60 that the Bengals Beat the Jets<div class="betInfo">Expires 11/15/2013 5:30 PM CT</div></li>
+                            </ul>
+                        </td><td style="width:30%;padding-left:25px;vertical-align:top">
+                            <div class="pull-right">
+                                <a href="#" data-role="button" data-inline="true" data-icon="plus" data-theme="b" data-mini="true">Place a Bet</a>
+                            </div>
+                            <h2>Filter</h2>
+                            <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+                                <legend>Bet Types:</legend>
+                                <input type="checkbox" id="checkbox-open" checked>
+                                <label for="checkbox-open">Open</label>
+                                <input type="checkbox" id="checkbox-pending">
+                                <label for="checkbox-pending">Pending</label>
+                                <input type="checkbox" id="checkbox-closed">
+                                <label for="checkbox-closed">Closed</label>
+                            </fieldset>
+
+                            <label for="tags">Tags:</label>
+                            <input type="text" id="tags" value="" placeholder="nfl,raiders">
+                            <label for="maxAmount">Max Amount:</label>
+                            <input type="text" id="maxAmount" value="" placeholder="$20">
+                            <a href="#" data-role="button" data-icon="search" data-theme="b" data-mini="true">Search</a>
+                        </td></tr>
+                    </table>
+                </div>
+                <div data-role="footer" data-id="appFooter" data-position="fixed" class="appFooter">
+                    <div data-role="navbar">
+                        <ul>
+                            <li><a href="#mybets">My Bets</a></li>
+                            <li><a href="#allbets" style="background-color:#000;background-image:none;">All Bets</a></li>
+                            <li><a href="#leaderboard">Leaderboard</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
+
+
+
+
+
+
+
+
+            <div data-role="page" id="leaderboard">
+                <div data-role="header" data-position="fixed">
+                    <h1>Charity Bets</h1>
+                </div>
+                <div data-role="content">
+                    <table style="width:100%">
+                        <tr><td style="width:70%">
+                            <ul data-role="listview">
+                                <li><span class="pull-right">$100.00</span>Jacob</li>
+                                <li><span class="pull-right">$90.00</span>Mason</li>
+                                <li><span class="pull-right">$80.00</span>Ethan</li>
+                                <li><span class="pull-right">$70.00</span>Noah</li>
+                                <li><span class="pull-right">$60.00</span>William</li>
+                                <li><span class="pull-right">$50.00</span>Liam</li>
+                                <li><span class="pull-right">$40.00</span>Jayden</li>
+                                <li><span class="pull-right">$30.00</span>Michael</li>
+                                <li><span class="pull-right">$20.00</span>Alexander</li>
+                                <li><span class="pull-right">$10.00</span>Aiden</li>
+                                <li><span class="pull-right">$100.00</span>Jacob</li>
+                                <li><span class="pull-right">$90.00</span>Mason</li>
+                                <li><span class="pull-right">$80.00</span>Ethan</li>
+                                <li><span class="pull-right">$70.00</span>Noah</li>
+                                <li><span class="pull-right">$60.00</span>William</li>
+                                <li><span class="pull-right">$50.00</span>Liam</li>
+                                <li><span class="pull-right">$40.00</span>Jayden</li>
+                                <li><span class="pull-right">$30.00</span>Michael</li>
+                                <li><span class="pull-right">$20.00</span>Alexander</li>
+                                <li><span class="pull-right">$10.00</span>Aiden</li>
+                                <li><span class="pull-right">$100.00</span>Jacob</li>
+                                <li><span class="pull-right">$90.00</span>Mason</li>
+                                <li><span class="pull-right">$80.00</span>Ethan</li>
+                                <li><span class="pull-right">$70.00</span>Noah</li>
+                                <li><span class="pull-right">$60.00</span>William</li>
+                                <li><span class="pull-right">$50.00</span>Liam</li>
+                                <li><span class="pull-right">$40.00</span>Jayden</li>
+                                <li><span class="pull-right">$30.00</span>Michael</li>
+                                <li><span class="pull-right">$20.00</span>Alexander</li>
+                                <li><span class="pull-right">$10.00</span>Aiden</li>
+                            </ul>
+                        </td><td style="width:30%;padding-left:25px;vertical-align:top">
+                            <h2>Everyone</h2>
+                            <button data-theme="b">Biggest Winners</button>
+                            <button data-theme="b">Biggest Givers</button>
+                            <h2>My Friends</h2>
+                            <button data-theme="b">Biggest Winners</button>
+                            <button data-theme="b">Biggest Givers</button>
+                        </td></tr>
+                    </table>
+
+                </div>
+                <div data-role="footer" data-id="appFooter" data-position="fixed" class="appFooter">
+                    <div data-role="navbar">
+                        <ul>
+                            <li><a href="#mybets">My Bets</a></li>
+                            <li><a href="#allbets">All Bets</a></li>
+                            <li><a href="#leaderboard" style="background-color:#000;background-image:none;">Leaderboard</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
         </div>
+
+
+
+
 
         <!--
         <script type="text/javascript" src="cordova.js"></script>-->

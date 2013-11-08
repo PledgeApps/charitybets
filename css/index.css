@@ -1,6 +1,58 @@
-.pull-right {float:right;}
+
+#appTitleBar{margin-bottom:0px;}
+#appTitle{text-align:center;color:#FFF;font-size:22px;font-weight:bold;padding-top:8px;}
+.navbar-nav {width:100%;}
+.navbar-nav li {width:33%;padding-left:0px;padding-right:0px;}
+.navbar-nav li a {width:100%;text-align:center;font-weight:bold;}
+.list-group.listView .list-group-item {border-left:0px; border-right:0px;border-radius:0px;font-weight:bold;}
 .betInfo {font-weight:normal;}
-.ui-listview {font-size:16px;}
+
+/*
+.modal-dialog { width: 100%; height: 100%; padding: 0; }
+.modal-content { height: 100%; border-radius: 0; }
+*/
+
+
+/* Disable responsive nav */
+.navbar-header { float: left; }
+.navbar-collapse { display: block !important; height: auto !important; padding-bottom: 0; overflow: visible !important;border-top:0px; }
+.navbar-toggle { display: none; }
+.navbar-brand { margin-left: -15px; }
+.navbar-nav { float: left; margin: 0; }
+.navbar-nav > li { float: left; }
+.navbar-nav > li > a { padding: 15px; }
+.navbar-nav.navbar-right { float: right; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

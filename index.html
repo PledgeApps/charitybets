@@ -21,8 +21,69 @@
 
 
     <div class="tab-pane" id="betDetails" style="display:none;">
-        Bet Details
+        <h4 id="bdBetName">Bet Details</h4>
+        <div class="row" style="margin:0px;">
+            <div class="col-xs-8" style="margin:0px;padding:0px;">
+                <span class="pull-right">
+                    <button class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-comment"></span> New Message</button>
+                </span>
+                <b>Messages</b>
+                <ul class="list-group listView" id="bdMessageList" style="margin-top:10px;">
+                    <li class="list-group-item" style="font-weight:normal;">
+                        <div class="messageInfo"><span class="pull-right">5/8/2013 5:57pm</span>Jeanette</div>
+                        <p>Aliquam aliquam elit vitae lectus hendrerit placerat id non nulla. Mauris id elit risus. Curabitur consequat est ut ante aliquet, in tincidunt lacus venenatis. Morbi aliquam malesuada ante ac mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Maecenas tempus lacus id nisi ultrices hendrerit. Donec viverra ultrices eros id venenatis. Ut faucibus lectus ligula, et malesuada est commodo at.</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-xs-4">
+                <div style="margin-bottom:20px;" id="bdAccept" class="clearfix">
+                    <div class="pull-right"><button class="btn btn-success btn-xs"><span class="glyphicon glyphicon-usd"></span> Accept Bet</button></div>
+                    <button id="bdReject" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-exclamation-sign"></span> Reject Bet</button>
+                </div>
+
+
+                <div style="margin-bottom:20px;" id="bdVictoryDefeat" class="clearfix">
+                    <div class="pull-right"><button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-exclamation-sign"></span> Admit Defeat</button></div>
+                    <button class="btn btn-success btn-xs"><span class="glyphicon glyphicon-bullhorn"></span> Claim Victory</button>
+                </div>
+
+                <div id="bdPay" class="pull-right" style="margin-bottom:20px;"><button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-gift"></span> Pay Up</button></div>
+                <table class="table table-striped">
+                    <tr><td><b>Amount</b><div id="bdAmount"></div></td></tr>
+                    <tr><td><b>Status</b><div id="bdStatus"></div></td></tr>
+                    <tr><td><b>Submitted By</b><div id="bdSubmitter"></div></td></tr>
+                    <tr><td><b>Accepted By</b><div id="bdAcceptor"></div></tr>
+                    <tr><td><b>Event Time</b><br/><div id="bdEventDate"></div></td></tr>
+                </table>
+            </div>
+
+        </div>
     </div>
+
+
+    <div class="tab-pane" id="userDetails" style="display:none;">
+        <h4 id="udUserName">User Details</h4>
+        <div class="row" style="margin:0px;">
+            <div class="col-xs-8" style="margin:0px;padding:0px;">
+                <div class="pull-right"><button class="btn btn-success btn-xs"><span class="glyphicon glyphicon-usd"></span> Bet</button></div>
+                <b>Bets</b>
+                <ul class="list-group listView" id="userBetsList" style="margin-top:10px;"></ul>
+            </div>
+            <div class="col-xs-4">
+                <span class="pull-right" style="margin-bottom:20px;"><button class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-comment"></span> Send Message</button></span>
+                <table class="table table-striped">
+                    <tr><td><b>Current Wagers</b><div id="udCurrentWagers"></div></td></tr>
+                    <tr><td><b>Total Won</b><div id="udTotalWon"></div></td></tr>
+                    <tr><td><b>Total Given</b><div id="udTotalGiven"></div></td></tr>
+                    <tr><td><b>Total Owed</b><div id="udTotalOwed"></div></td></tr>
+                    <tr><td><b>Date Joined</b><div id="udDateJoined"></div></td></tr>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+
 
     <div class="tab-content" id="mainTabs">
 
@@ -36,6 +97,11 @@
 
 
         <div class="tab-pane" id="publicBets">
+            <div style="min-height:40px;padding:5px;">
+                <button type="button" class="btn btn-primary pull-right btn-sm pull-right"><span class="glyphicon glyphicon-plus-sign"></span> Place a Bet</button>
+            </div>
+            <div class="list-group listView clearfix" id="publicBetsList"></div>
+            <!--
             <div class="row" style="margin:0px;">
                 <div class="col-xs-8" style="padding:0px;">
                     <div class="list-group listView" id="publicBetsList"></div>
@@ -66,6 +132,7 @@
                     </div>
                 </div>
             </div>
+            -->
         </div>
 
 
@@ -100,9 +167,9 @@
 
     <nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
         <ul class="nav navbar-nav">
-            <li class="active"><a href="#myBets" onclick="showMainTabs()" data-toggle="tab">My Bets</a></li>
-            <li><a href="#publicBets" onclick="showMainTabs()" data-toggle="tab">Available Bets</a></li>
-            <li><a href="#leaderboard" onclick="showMainTabs()" data-toggle="tab">Leaderboard</a></li>
+            <li class="active"><a href="#myBets" onclick="clearHash();" data-toggle="tab">My Bets</a></li>
+            <li><a href="#publicBets" onclick="clearHash();" data-toggle="tab">Available Bets</a></li>
+            <li><a href="#leaderboard" onclick="clearHash();" data-toggle="tab">Leaderboard</a></li>
         </ul>
     </nav>
 

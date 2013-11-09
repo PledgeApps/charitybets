@@ -1,4 +1,5 @@
-
+html,body {height:100%;}
+#content {padding-bottom:92px;}
 #appTitleBar{margin-bottom:0px;}
 #appTitle{text-align:center;color:#FFF;font-size:22px;font-weight:bold;padding-top:8px;}
 .navbar-nav {width:100%;}

@@ -12,6 +12,7 @@ function init()
         populateMyBets();
         populatePublicBets();
         populateLeaderboard(appData.leaderboards.winners);
+        $('#content').height($(window).height() - $('#appTitleBar').height() - $('#appFooter').height() - 20);
     });
 }
 
@@ -59,11 +60,11 @@ function selectView(view)
     if (view=='mainTabs') $('#mainTabs').show(); else $('#mainTabs').hide();
     if (view=='betDetails') $('#betDetails').show(); else $('#betDetails').hide();
     if (view=='userDetails') $('#userDetails').show(); else $('#userDetails').hide();
+    if (view=='sendMessage') $('#sendMessage').show(); else $('#sendMessage').hide();
 }
 
 function showBet(id)
 {
-    console.log('showing bet' + id);
     var tzOffset = new Date().getTimezoneOffset();
     var bet = appData.betDetails[id];
     var eventDate = new Date(bet.event_date)
@@ -73,6 +74,8 @@ function showBet(id)
     $('#bdSubmitter').html('<a href="#user_' + bet.submitter_id + '">' + bet.submitter_name + '</a>');
     if (bet.acceptor_id>0) $('#bdAcceptor').html('<a href="javascript:showUser(' + bet.acceptor_id + ');">' + bet.acceptor_name + '</a>');
     $('#bdEventDate').html(formatDateTime(eventDate));
+
+    $('#bdNewMessage').attr('href', '#message_bet_' + id);
 
     switch (bet.status)
     {
@@ -113,7 +116,7 @@ function showBet(id)
             $('#bdStatus').html('Cancelled');
     }
 
-    if (typeof bet.messages != 'undefined') populateMessages(bet.messages); else loadMessages('bet', bet.id);
+    if (typeof bet.messages != 'undefined' && bet.messages!=null) populateMessages(bet.messages); else loadMessages('bet', bet.id);
 
     selectView('betDetails');
 }
@@ -123,6 +126,28 @@ function showUser(id)
     if (appData.userDetails[id]!=null) populateUser(appData.userDetails[id]); else loadUser(id);
 }
 
+
+function showMessage(contentType, contentId)
+{
+    selectView('sendMessage');
+    var height = $('#content').height() - $('#smTitle').outerHeight() - $('#smSendButton').outerHeight();
+    $('#smBody').outerHeight(height-70);
+    $('#smSendButton').data('contentType', contentType).data('contentId', contentId);
+}
+
+function sendMessage()
+{
+    var contentType = $('#smSendButton').data('contentType');
+    var contentId = $('#smSendButton').data('contentId');
+    var body = $('#smBody').val();
+    paSendMessage('charitybets', contentType, contentId, body, function(data){
+        if (contentType=='bet')
+        {
+            appData.betDetails[contentId].messages=null;
+            showBet(contentId);
+        }
+    });
+}
 
 
 
@@ -220,5 +245,12 @@ $(window).on('hashchange', function() {
         case 'user':
             showUser(parts[1]);
             break;
+        case 'message':
+            showMessage(parts[1],parts[2]);
+            break;
     }
+});
+
+$( window ).resize(function() {
+    $('#content').height($(window).height() - $('#appTitleBar').height() - $('#appFooter').height() - 20 );
 });

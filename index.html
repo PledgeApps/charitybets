@@ -14,9 +14,15 @@
     <div id="appTitle">Charity Bets</div>
 </nav>
 
-<div class="content">
+<div class="content" id="content">
 
 
+    <div class="tab-pane" id="sendMessage" style="display:none;height:100%;">
+            <h4 id="smTitle">Send a Message</h4>
+            <textarea class="form-control" style="width:100%" id="smBody"></textarea>
+            <button id="smSendButton" onclick="sendMessage();" class="btn btn-primary btn-sm pull-right" style="margin:10px;">Send</button>
+        </table>
+    </div>
 
 
 
@@ -25,7 +31,7 @@
         <div class="row" style="margin:0px;">
             <div class="col-xs-8" style="margin:0px;padding:0px;">
                 <span class="pull-right">
-                    <button class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-comment"></span> New Message</button>
+                    <a class="btn btn-primary btn-xs" id="bdNewMessage"><span class="glyphicon glyphicon-comment"></span> New Message</a>
                 </span>
                 <b>Messages</b>
                 <ul class="list-group listView" id="bdMessageList" style="margin-top:10px;">
@@ -165,7 +171,7 @@
     </div>
 
 
-    <nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
+    <nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation" id="appFooter">
         <ul class="nav navbar-nav">
             <li class="active"><a href="#myBets" onclick="clearHash();" data-toggle="tab">My Bets</a></li>
             <li><a href="#publicBets" onclick="clearHash();" data-toggle="tab">Available Bets</a></li>
@@ -173,16 +179,16 @@
         </ul>
     </nav>
 
+</div>
 
 
-    <!--
-           <script type="text/javascript" src="cordova.js"></script>-->
+    <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
     <script type="text/javascript" src="js/pledgeapps.js"></script>
     <script type="text/javascript" src="js/charitybets.js"></script>
     <script type="text/javascript">
-        <!--app.initialize();-->
+        app.initialize();
     </script>
 </body>
 </html>

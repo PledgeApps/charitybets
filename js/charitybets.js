@@ -1,7 +1,9 @@
 var appData = {};
 var userId = 1;
 
-function init()
+function cbApiUrl() { return apiUrl + 'charitybets/?k=' + userKey; }
+
+function init(cb)
 {
     $.getJSON( apiUrl + 'charitybets/?a=appData&k=qwerty', function( data ) {
         appData = data;
@@ -13,6 +15,7 @@ function init()
         populatePublicBets();
         populateLeaderboard(appData.leaderboards.winners);
         $('#content').height($(window).height() - $('#appTitleBar').height() - $('#appFooter').height() - 20);
+        if (typeof cb != 'undefined') cb();
     });
 }
 
@@ -74,14 +77,15 @@ function showBet(id)
     $('#bdSubmitter').html('<a href="#user_' + bet.submitter_id + '">' + bet.submitter_name + '</a>');
     if (bet.acceptor_id>0) $('#bdAcceptor').html('<a href="javascript:showUser(' + bet.acceptor_id + ');">' + bet.acceptor_name + '</a>');
     $('#bdEventDate').html(formatDateTime(eventDate));
-
     $('#bdNewMessage').attr('href', '#message_bet_' + id);
+    $('#bdAcceptButton').attr('onclick','acceptBet(' + id + ');');
+    $('#bdRejectButton').attr('onclick','rejectBet(' + id + ');');
 
     switch (bet.status)
     {
         case "open":
             $('#bdAccept').show();
-            if (bet.acceptor_id==userId) $('#bdReject').show(); else $('#bdReject').hide();
+            if (bet.acceptor_id==userId) $('#bdRejectButton').show(); else $('#bdRejectButton').hide();
             $('#bdVictoryDefeat').hide();
             $('#bdPay').hide();
             $('#bdStatus').html('Awaiting Acceptance');
@@ -120,6 +124,13 @@ function showBet(id)
 
     selectView('betDetails');
 }
+
+
+function acceptBet(id) { $.getJSON( cbApiUrl() + '&a=acceptBet&betId=' + id, function( data ) { refreshBet(id); }); }
+function rejectBet(id) { $.getJSON( cbApiUrl() + '&a=rejectBet&betId=' + id, function( data ) { refreshBet(id); }); }
+
+function refreshBet(betId) { init(function(){ showBet(betId); }); }
+
 
 function showUser(id)
 {

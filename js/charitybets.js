@@ -80,6 +80,8 @@ function showBet(id)
     $('#bdNewMessage').attr('href', '#message_bet_' + id);
     $('#bdAcceptButton').attr('onclick','acceptBet(' + id + ');');
     $('#bdRejectButton').attr('onclick','rejectBet(' + id + ');');
+    $('#bdClaimVictoryButton').attr('onclick','claimVictory(' + id + ');');
+    $('#bdAdmitDefeatButton').attr('onclick','admitDefeat(' + id + ');');
 
     switch (bet.status)
     {
@@ -100,7 +102,7 @@ function showBet(id)
             $('#bdAccept').hide();
             $('#bdVictoryDefeat').hide();
             if (bet.submitter_id==userId || bet.acceptor_id==userId) {
-                if (winner_id==userId) $('#bdPay').hide(); else $('#bdPay').show();
+                if (bet.winner_id==userId) $('#bdPay').hide(); else $('#bdPay').show();
             } else $('#bdPay').hide();
             var winnerName = (bet.submitter_id==userId) ? bet.submitter_name : bet.acceptor_name;
             $('#bdStatus').html('Won by ' + winnerName + '<br/>Awaiting Payment');
@@ -128,6 +130,8 @@ function showBet(id)
 
 function acceptBet(id) { $.getJSON( cbApiUrl() + '&a=acceptBet&betId=' + id, function( data ) { refreshBet(id); }); }
 function rejectBet(id) { $.getJSON( cbApiUrl() + '&a=rejectBet&betId=' + id, function( data ) { refreshBet(id); }); }
+function claimVictory(id) { $.getJSON( cbApiUrl() + '&a=claimVictory&betId=' + id, function( data ) { refreshBet(id); }); }
+function admitDefeat(id) { $.getJSON( cbApiUrl() + '&a=admitDefeat&betId=' + id, function( data ) { refreshBet(id); }); }
 
 function refreshBet(betId) { init(function(){ showBet(betId); }); }
 
@@ -227,7 +231,7 @@ function populateBets(data, container)
     var result = '';
     for (var i=0;i<data.length;i++)
     {
-        var entry = appData.myBets[i];
+        var entry = data[i];
         var submitterName = (entry.submitter_id==userId) ? "You" : entry.submitter_name;
         var acceptorName = (entry.acceptor_id==userId) ? "You" : entry.acceptor_name;
         var displayTime = formatDateTime(new Date(entry.event_date));

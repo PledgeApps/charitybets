@@ -24,6 +24,40 @@
         </table>
     </div>
 
+    <div class="tab-pane" id="newBet" style="display:none;">
+        <h4 id="bdBetName">Bet Details</h4>
+        <div class="form-group">
+            <label for="nbWho">Who do you bet?</label>
+            <select class="form-control" id="nbWho" onchange="previewBet();">
+                <option value="0">Anyone</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="nbAmount">How much do you bet?</label>
+            <select class="form-control" id="nbAmount" onchange="previewBet();">
+                <option value="1">$1</option>
+                <option value="2">$2</option>
+                <option value="3">$3</option>
+                <option value="4">$4</option>
+                <option value="5">$5</option>
+                <option value="6">$10</option>
+                <option value="7">$15</option>
+                <option value="8">$20</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="nbDescription">You bet that:</label>
+            <input type="text" class="form-control" id="nbDescription" placeholder="Team1 beats Team2" onchange="previewBet();">
+        </div>
+        <div class="form-group">
+            <label for="nbEventTime">What time does it start?</label>
+            <input type="datetime-local" class="form-control" id="nbEventTime" placeholder="11/15/2013 6:00pm CST" onchange="previewBet();">
+            <i>Bets will be accepted up until this time, choose carefully.</i>
+        </div>
+        <b>Preview</b>
+        <div id="nbPreview" style="font-style:italic;">I bet anyone $5 that the Eagles beat the Ravens - <span>Expires: 11/15/2013 6:00pm</span></div>
+        <button id="nbSave" class="btn btn-small btn-primary pull-right" onclick="postBet()">Save</button>
+    </div>
 
 
     <div class="tab-pane" id="betDetails" style="display:none;">
@@ -104,41 +138,9 @@
 
         <div class="tab-pane" id="publicBets">
             <div style="min-height:40px;padding:5px;">
-                <button type="button" class="btn btn-primary pull-right btn-sm pull-right"><span class="glyphicon glyphicon-plus-sign"></span> Place a Bet</button>
+                <a href="#newBet" class="btn btn-primary pull-right btn-sm pull-right"><span class="glyphicon glyphicon-plus-sign"></span> Place a Bet</a>
             </div>
             <div class="list-group listView clearfix" id="publicBetsList"></div>
-            <!--
-            <div class="row" style="margin:0px;">
-                <div class="col-xs-8" style="padding:0px;">
-                    <div class="list-group listView" id="publicBetsList"></div>
-                </div>
-                <div class="col-xs-4">
-                    <div style="padding:5px 5px 0px 5px;">
-                        <button type="button" class="btn btn-primary pull-right btn-sm"><span class="glyphicon glyphicon-plus-sign"></span> Place a Bet</button>
-                        <div class="clearfix"></div>
-                        <h4>Filter</h4>
-                        <div class="form-group">
-                            <label>Bet Types</label><br/>
-                            <div class="btn-group" data-toggle="buttons">
-                                <label class="btn btn-primary btn-xs"><input type="checkbox"> Open</label>
-                                <label class="btn btn-primary btn-xs"><input type="checkbox"> Pending</label>
-                                <label class="btn btn-primary btn-xs"><input type="checkbox"> Closed</label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="tags">Tags</label>
-                            <input type="text" class="form-control" id="tags" placeholder="football,Raiders">
-                        </div>
-                        <div class="form-group">
-                            <label for="maxAmount">Max Amount</label>
-                            <input type="text" class="form-control" id="maxAmount" placeholder="$20">
-                        </div>
-                        <button type="button" class="btn btn-primary btn-block btn-sm"><span class="glyphicon glyphicon-search"></span> Search</button>
-
-                    </div>
-                </div>
-            </div>
-            -->
         </div>
 
 

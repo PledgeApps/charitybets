@@ -64,6 +64,66 @@ function selectView(view)
     if (view=='betDetails') $('#betDetails').show(); else $('#betDetails').hide();
     if (view=='userDetails') $('#userDetails').show(); else $('#userDetails').hide();
     if (view=='sendMessage') $('#sendMessage').show(); else $('#sendMessage').hide();
+    if (view=='newBet') $('#newBet').show(); else $('#newBet').hide();
+}
+
+function showNewBet()
+{
+    selectView('newBet');
+    previewBet();
+}
+
+function previewBet()
+{
+    var who = $('#nbWho').val();
+    var amount = $('#nbAmount').val();
+    var description = $('#nbDescription').val();
+    var eventTime = $('#nbEventTime').val();
+
+    var error = '';
+    if (eventTime=='') error = 'What time does this event start?';
+    else if (new Date(eventTime) < new Date()) error = 'This event must take place in the future.';
+    if (description.length<5) error = 'What do you bet them?';
+
+
+    if (error=='')
+    {
+        var displayWho = $("#nbWho option[value='" + who + "']").text()
+        var displayAmount = $("#nbAmount option[value='" + amount + "']").text()
+        var displayTime = eventTime.toString().replace('T', ' ');
+        var result = 'You bet ' + displayWho + ' ' + displayAmount + ' that ' + description + ' - Expires: ' + displayTime;
+        $('#nbPreview').html(result);
+        return true;
+    } else {
+        $('#nbPreview').html('<div class="error">' + error + '</div>');
+        return false;
+    }
+
+}
+
+function postBet()
+{
+    if (previewBet()) {
+        var who = $('#nbWho').val();
+        var amount = $('#nbAmount').val();
+        var description = $('#nbDescription').val();
+        var eventTime = $('#nbEventTime').val();
+
+        var data = {
+                a: 'postBet',
+                k: userKey,
+                acceptorId: who,
+                amount: amount,
+                title: description,
+                eventDate: eventTime
+            };
+            $.post( apiUrl + 'charitybets/', data).done(function() {
+                init(function(){
+                    selectView('mainTabs');
+                    $('#myBets').tab('show');
+                })
+            });
+    }
 }
 
 function showBet(id)
@@ -262,6 +322,9 @@ $(window).on('hashchange', function() {
             break;
         case 'message':
             showMessage(parts[1],parts[2]);
+            break;
+        case 'newBet':
+            showNewBet();
             break;
     }
 });

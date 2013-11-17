@@ -1,7 +1,9 @@
 html,body {height:100%;}
 #content {padding-bottom:92px;}
-#appTitleBar{margin-bottom:0px;}
+#appTitleBar{margin-bottom:0px;background-color:#314d8b;background: -webkit-linear-gradient(top, #6982b1, #314d8b);}
 #appTitle{text-align:center;color:#FFF;font-size:22px;font-weight:bold;padding-top:8px;}
+#appFooter { min-height:0px; }
+#appFooter ul {margin-bottom:0px;margin-top:0px;}
 .navbar-nav {width:100%;}
 .navbar-nav li {width:33%;padding-left:0px;padding-right:0px;}
 .navbar-nav li a {width:100%;text-align:center;font-weight:bold;}
